@@ -28,4 +28,10 @@ public class GameData {
 	public List<Game> getListGame() {
 		return (List<Game>) listGame.stream().filter(u -> (u.getName()).length() > 0).collect(Collectors.toList());
 	}
+
+	public boolean findGame(String nameGame) {
+		if (listGame.contains(nameGame))
+			return true;
+		return false;
+	}
 }

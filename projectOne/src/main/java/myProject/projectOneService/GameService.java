@@ -19,4 +19,10 @@ public class GameService {
 	public List<Game> getListAllGame() {
 		return gameData.getListGame();
 	}
+
+	public boolean findGame(String nameGame) {
+		if (gameData.findGame(nameGame))
+			return true;
+		return false;
+	}
 }
