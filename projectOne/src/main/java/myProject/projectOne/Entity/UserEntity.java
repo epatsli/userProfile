@@ -1,8 +1,14 @@
-package myProject.projectOneDomain;
+package myProject.projectOne.Entity;
+
+import java.util.ArrayList;
 
 import org.springframework.lang.NonNull;
 
-public class User {
+import myProject.projectOneDomain.Playability;
+
+public class UserEntity {
+
+	private int id;
 
 	@NonNull
 	private String firstName;
@@ -18,13 +24,16 @@ public class User {
 
 	private String lifeMotto;
 
-	public User(String firstName, String lastName, String email, String password, String lifeMotto) {
-		super();
+	private ArrayList<Playability> playability;
+
+	public UserEntity(int id, String firstName, String lastName, String email, String password, String lifeMotto) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.lifeMotto = lifeMotto;
+		this.playability = null;
 
 	}
 
@@ -66,6 +75,18 @@ public class User {
 
 	public void setLifeMotto(String lifeMotto) {
 		this.lifeMotto = lifeMotto;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public ArrayList<Playability> getPlayability() {
+		return playability;
 	}
 
 	@Override

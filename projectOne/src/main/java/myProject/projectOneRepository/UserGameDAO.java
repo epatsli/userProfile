@@ -5,19 +5,19 @@ import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
+import myProject.projectOne.Entity.UserEntity;
 import myProject.projectOneDomain.Game;
-import myProject.projectOneDomain.User;
 
 @Repository
-public class UserGameData {
+public class UserGameDAO {
 
 	Set<String> listGameUserOne = new HashSet<>();
 	Set<String> listGameUserTwo = new HashSet<>();
 	Set<String> listGameUserThree = new HashSet<>();
-	User user;
-	GameData setGame;
+	UserEntity user;
+	GameDAO setGame;
 
-	public UserGameData() {
+	public UserGameDAO() {
 
 		listGameUserOne.add("Checkers");
 		listGameUserOne.add("Poker");
@@ -49,7 +49,7 @@ public class UserGameData {
 
 	public void addNewGame(String userName, String nameGame) throws Exception {
 		Set<String> result = returnListGame(userName);
-		if (setGame.findGame(nameGame)) {
+		if (setGame.existGame(nameGame)) {
 			result.add(nameGame);
 		} else {
 			Game newGame = new Game("Chinese", 5);

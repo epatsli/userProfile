@@ -1,13 +1,20 @@
 package myProject.projectOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import myProject.projectOneRepository.UserDAO;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest extends TestCase {
+
+	@Autowired
+	private UserDAO dao;
+
 	/**
 	 * Create the test case
 	 *
@@ -29,6 +36,6 @@ public class AppTest extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testApp() {
-		assertTrue(true);
+		assertTrue(dao.getUserById(1) != null);
 	}
 }

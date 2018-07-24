@@ -5,15 +5,14 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import myProject.projectOneDomain.Game;
-import myProject.projectOneRepository.GameData;
+import myProject.projectOneRepository.GameDAO;
 
 @Service
 public class GameService {
-	private GameData gameData;
+	private GameDAO gameData;
 
 	public GameService() {
-		super();
-		this.gameData = new GameData();
+		this.gameData = new GameDAO();
 	}
 
 	public List<Game> getListAllGame() {
@@ -21,8 +20,7 @@ public class GameService {
 	}
 
 	public boolean findGame(String nameGame) {
-		if (gameData.findGame(nameGame))
-			return true;
-		return false;
+		boolean bool = (gameData.existGame(nameGame)) ? true : false;
+		return bool;
 	}
 }

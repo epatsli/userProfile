@@ -6,7 +6,6 @@ public class Game {
 	private int numberPlayer;
 
 	public Game(String name, int numberPlayer) {
-		super();
 		this.name = name;
 		this.numberPlayer = numberPlayer;
 	}
