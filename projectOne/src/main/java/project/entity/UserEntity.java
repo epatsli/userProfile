@@ -1,10 +1,10 @@
-package myProject.projectOne.Entity;
+package project.entity;
 
 import java.util.ArrayList;
 
 import org.springframework.lang.NonNull;
 
-import myProject.projectOneDomain.Playability;
+import project.domain.Playability;
 
 public class UserEntity {
 

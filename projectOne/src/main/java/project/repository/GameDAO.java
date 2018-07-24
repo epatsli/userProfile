@@ -1,4 +1,4 @@
-package myProject.projectOneRepository;
+package project.repository;
 
 import java.util.HashSet;
 import java.util.List;
@@ -7,22 +7,22 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import myProject.projectOneDomain.Game;
+import project.entity.GameEntity;
 
 @Repository
 public class GameDAO {
 
-	private Set<Game> listGame = new HashSet<>();
+	private Set<GameEntity> listGame = new HashSet<>();
 
 	public GameDAO() {
 
-		listGame.add(new Game("Checkers", 2));
-		listGame.add(new Game("Chess", 2));
-		listGame.add(new Game("Poker", 3));
-		listGame.add(new Game("Queue", 4));
+		listGame.add(new GameEntity("Checkers", 2));
+		listGame.add(new GameEntity("Chess", 2));
+		listGame.add(new GameEntity("Poker", 3));
+		listGame.add(new GameEntity("Queue", 4));
 	}
 
-	public List<Game> getListGame() {
+	public List<GameEntity> getListGame() {
 		return listGame.stream().filter(u -> (u.getName()).length() > 0).collect(Collectors.toList());
 	}
 

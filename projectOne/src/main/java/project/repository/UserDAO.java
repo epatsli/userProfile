@@ -1,12 +1,15 @@
-package myProject.projectOneRepository;
+package project.repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import myProject.projectOne.Entity.UserEntity;
+import project.domain.Playability;
+import project.entity.UserEntity;
 
 @Repository
 public class UserDAO {
@@ -37,22 +40,19 @@ public class UserDAO {
 		user.setPassword(newPassword);
 		user.setLifeMotto(newLifeMotto);
 	}
-	/*
-	 * // dfdfsdf public void setUserLastName(String name, String newLastName) {
-	 * getUserByName(name).setLastName(newLastName); }
-	 * 
-	 * public void setUserMail(String name, String newMail) {
-	 * getUserByName(name).setEmail(newMail); }
-	 * 
-	 * public void setPassword(String name, String newPassword) {
-	 * getUserByName(name).setPassword(newPassword); }
-	 * 
-	 * public void setLifeMotto(String name, String newLifeMotto) {
-	 * getUserByName(name).setLifeMotto(newLifeMotto); }
-	 */
 
 	public List<UserEntity> getAllUsers() {
-		// TODO Auto-generated method stub
 		return userList;
+	}
+
+	///
+	List<UserEntity> listUser = new ArrayList<UserEntity>();
+	List<ArrayList<Playability>> list = new ArrayList<ArrayList<Playability>>();
+
+	Map<UserEntity, List<Playability>> playabilityUser = new HashMap<>();
+
+	public void addAvailabilityHours(int i, List<Playability> playability) {
+		UserEntity user = userList.get(i - 1);
+		playabilityUser.put(user, playability);
 	}
 }

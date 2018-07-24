@@ -1,11 +1,11 @@
-package myProject.projectOneService;
+package project.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import myProject.projectOneDomain.Game;
-import myProject.projectOneRepository.GameDAO;
+import project.entity.GameEntity;
+import project.repository.GameDAO;
 
 @Service
 public class GameService {
@@ -15,11 +15,11 @@ public class GameService {
 		this.gameData = new GameDAO();
 	}
 
-	public List<Game> getListAllGame() {
+	public List<GameEntity> getListAllGame() {
 		return gameData.getListGame();
 	}
 
-	public boolean findGame(String nameGame) {
+	public boolean existGame(String nameGame) {
 		boolean bool = (gameData.existGame(nameGame)) ? true : false;
 		return bool;
 	}

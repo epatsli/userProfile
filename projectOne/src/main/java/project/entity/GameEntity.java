@@ -1,11 +1,11 @@
-package myProject.projectOneDomain;
+package project.entity;
 
-public class Game {
+public class GameEntity {
 
 	private String name;
 	private int numberPlayer;
 
-	public Game(String name, int numberPlayer) {
+	public GameEntity(String name, int numberPlayer) {
 		this.name = name;
 		this.numberPlayer = numberPlayer;
 	}

@@ -1,12 +1,12 @@
-package myProject.projectOneRepository;
+package project.repository;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
-import myProject.projectOne.Entity.UserEntity;
-import myProject.projectOneDomain.Game;
+import project.entity.GameEntity;
+import project.entity.UserEntity;
 
 @Repository
 public class UserGameDAO {
@@ -52,7 +52,7 @@ public class UserGameDAO {
 		if (setGame.existGame(nameGame)) {
 			result.add(nameGame);
 		} else {
-			Game newGame = new Game("Chinese", 5);
+			GameEntity newGame = new GameEntity("Chinese", 5);
 			result.add(newGame.getName());
 		}
 	}

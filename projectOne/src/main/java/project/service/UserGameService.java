@@ -1,10 +1,10 @@
-package myProject.projectOneService;
+package project.service;
 
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
-import myProject.projectOneRepository.UserGameDAO;
+import project.repository.UserGameDAO;
 
 @Service
 public class UserGameService {
