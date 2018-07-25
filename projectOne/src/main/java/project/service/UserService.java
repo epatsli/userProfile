@@ -23,13 +23,13 @@ public class UserService {
 		return userData.getUserById(i);
 	}
 
-	public void getUserProfile(int i) {
-		userData.getUserProfile(i);
+	public UserEntity getUserProfile(int i) {
+		return userData.getUserProfile(i);
 	}
 
 	public void setUserProfile(int i, String newName, String newLastName, String newMail, String newPassword,
 			String newLifeMotto) {
-		setUserProfile(i, newName, newLastName, newMail, newPassword, newLifeMotto);
+		userData.setUserProfile(i, newName, newLastName, newMail, newPassword, newLifeMotto);
 	}
 
 	public List<UserDTO> getAllUsers() {

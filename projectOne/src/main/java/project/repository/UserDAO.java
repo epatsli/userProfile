@@ -26,9 +26,8 @@ public class UserDAO {
 		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
 	}
 
-	public void getUserProfile(int i) {
-		UserEntity user = userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
-		user.toString();
+	public UserEntity getUserProfile(int i) {
+		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
 	}
 
 	public void setUserProfile(int i, String newName, String newLastName, String newMail, String newPassword,

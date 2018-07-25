@@ -1,11 +1,11 @@
-package myProject.projectOne;
+package project.projectOne;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import myProject.projectOneRepository.UserDAO;
+import project.repository.UserDAO;
 
 /**
  * Unit test for simple App.
