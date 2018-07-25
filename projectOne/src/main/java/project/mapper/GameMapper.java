@@ -4,19 +4,32 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import project.entity.GameEntity;
 import project.to.GameTO;
 
+@Component
 public class GameMapper {
 
-	public static List<GameTO> mapGame(Set<GameEntity> allGame) {
+	public static List<GameTO> mapGameToEntity(Set<GameEntity> allGame) {
 
-		return allGame.stream().map(u -> mapToTO(u)).collect(Collectors.toList());
+		return allGame.stream().map(GameMapper::mapTO).collect(Collectors.toList());
 	}
 
-	public static GameTO mapToTO(GameEntity gameEntity) {
+	public static GameTO mapTO(GameEntity gameEntity) {
 
-		return new GameTO(gameEntity.getName());
+		return new GameTO(gameEntity.getName(), gameEntity.getNumberPlayer());
+	}
+
+	public static Set<GameEntity> mapGametoTO(List<GameTO> allGame) {
+
+		return (Set<GameEntity>) allGame.stream().map(GameMapper::mapToEntity).collect(Collectors.toList());
+	}
+
+	public static GameEntity mapToEntity(GameTO gameTo) {
+
+		return new GameEntity(gameTo.getName(), gameTo.getNumberPlayer());
 	}
 
 }

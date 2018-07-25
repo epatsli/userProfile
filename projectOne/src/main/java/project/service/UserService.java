@@ -14,9 +14,9 @@ import project.to.UserTO;
 @Service
 public class UserService {
 
-	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
 	public UserService() {
 
 		this.userDAO = new UserDAO();
@@ -39,12 +39,13 @@ public class UserService {
 		return UserMapper.mapUser(userDAO.getAllUsers());
 	}
 
-	//// my
 	public UserTO findUserByEmail(String email) {
 		return UserMapper.mapToTO(userDAO.getUserByEmail(email));
 	}
 
+	// current profile information,
 	public UserTO findUserById(int i) {
 		return UserMapper.mapToTO(userDAO.getUserById(i));
 	}
+
 }
