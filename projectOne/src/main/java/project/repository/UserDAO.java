@@ -44,6 +44,10 @@ public class UserDAO {
 		return userList;
 	}
 
+	public UserEntity getUserByEmail(String email) {
+		return userList.stream().filter(u -> u.getEmail() == email).collect(Collectors.toList()).get(0);
+	}
+
 	///
 	List<UserEntity> listUser = new ArrayList<UserEntity>();
 	List<ArrayList<Playability>> list = new ArrayList<ArrayList<Playability>>();

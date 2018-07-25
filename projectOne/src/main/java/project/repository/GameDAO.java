@@ -30,4 +30,12 @@ public class GameDAO {
 		boolean bool = (listGame.contains(nameGame)) ? true : false;
 		return bool;
 	}
+
+	public GameEntity getGameByName(String name) {
+		return listGame.stream().filter(g -> g.getName() == name).collect(Collectors.toList()).get(0);
+	}
+
+	public Set<GameEntity> getAllGame() {
+		return listGame;
+	}
 }
