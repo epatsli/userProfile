@@ -3,7 +3,6 @@ package project.service;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.entity.GameEntity;
@@ -18,9 +17,8 @@ public class UserGameService {
 
 	private UserGameDAO userGameDAO;
 
-	@Autowired
-	public UserGameService(UserGameDAO userGameDAO) {
-		this.userGameDAO = userGameDAO;
+	public UserGameService() {
+		this.userGameDAO = new UserGameDAO();
 	}
 
 	public List<GameTO> getUserGame(UserTO userTO) throws Exception {

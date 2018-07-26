@@ -12,11 +12,10 @@ public class GamePlayed {
 	private Date date;
 	private int Point;
 
-	public GamePlayed(GameEntity game, UserEntity userWin, UserEntity userLose, Date date, int point) {
+	public GamePlayed(GameEntity game, UserEntity userWin, UserEntity userLose, int point) {
 		Game = game;
 		UserWin = userWin;
 		UserLose = userLose;
-		this.date = date;
 		Point = point;
 	}
 

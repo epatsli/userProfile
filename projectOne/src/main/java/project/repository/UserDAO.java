@@ -6,20 +6,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import project.domain.Playability;
+import aspect.Aspect.LogExecutionTime;
+import project.entity.PlayabilityEntity;
 import project.entity.UserEntity;
 
 @Repository
 public class UserDAO {
 
-	private List<UserEntity> userList = new ArrayList<>();
+	private List<UserEntity> userList = new ArrayList<UserEntity>();
 
+	@Autowired
 	public UserDAO() {
-		userList.add(new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short."));
-		userList.add(new UserEntity(2, "Olga", "Kowalska", "ola.kowalska@gmail.com", "admin", "I want to die."));
-		userList.add(new UserEntity(3, "Michal", "Tyka", "michal.tyka@gmail.com", "1234", "I don't belive."));
+		userList.add(new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
+		userList.add(new UserEntity(2, "Olga", "Kowalska", "ola.kowalska@gmail.com", "admin", "I want to die.", null));
+		userList.add(new UserEntity(3, "Michal", "Tyka", "michal.tyka@gmail.com", "1234", "I don't belive.", null));
 	}
 
 	/*
@@ -36,6 +39,7 @@ public class UserDAO {
 	 * user.setLastName(newLastName); user.setEmail(newMail);
 	 * user.setPassword(newPassword); user.setLifeMotto(newLifeMotto); }
 	 */
+	@LogExecutionTime
 	public List<UserEntity> getAllUsers() {
 		return userList;
 	}
@@ -45,23 +49,17 @@ public class UserDAO {
 	}
 
 	///
-	List<UserEntity> listUser = new ArrayList<UserEntity>();
-	List<ArrayList<Playability>> list = new ArrayList<ArrayList<Playability>>();
-
-	Map<UserEntity, List<Playability>> playabilityUser = new HashMap<>();
-
-	public void addAvailabilityHours(int i, List<Playability> playability) {
-		UserEntity user = userList.get(i - 1);
-		playabilityUser.put(user, playability);
-	}
+	// List<UserEntity> listUser = new ArrayList<UserEntity>();
+	// List<ArrayList<Playability>> list = new
+	/// ArrayList<ArrayList<Playability>>();
 
 	public UserEntity updateUserProfile(UserEntity user) {
 		int id = user.getId();
 		int i = 0;
 		for (UserEntity usr : userList) {
 			if (usr.getId() == id) {
-				listUser.remove(i);
-				listUser.add(i, user);
+				userList.remove(i);
+				userList.add(i, user);
 			}
 			i++;
 
@@ -72,5 +70,58 @@ public class UserDAO {
 	public UserEntity showUserProfile(UserEntity user) {
 		user.toString();
 		return user;
+	}
+
+	Map<UserEntity, List<PlayabilityEntity>> playabilityUser = new HashMap<>();
+
+	public UserEntity addAvailabilityHours(UserEntity user, List<PlayabilityEntity> playability) {
+
+		int id = user.getId();
+		for (UserEntity usr : userList) {
+			if (usr.getId() == id) {
+				usr.setPlayability(playability);
+			}
+		}
+		return user;
+	}
+
+	public Map<UserEntity, List<PlayabilityEntity>> editAvailabilityHours(UserEntity user,
+			List<PlayabilityEntity> playability) {
+
+		List<PlayabilityEntity> abilityUser = findAvailabilityUser(user);
+
+		for (PlayabilityEntity pl : abilityUser) {
+			if (pl.equals(playability)) {
+				abilityUser.remove(pl);
+				addAvailabilityHours(user, playability);
+			}
+		}
+		return playabilityUser;
+	}
+
+	public Map<UserEntity, List<PlayabilityEntity>> deleteAvailabilityHours(UserEntity user,
+			List<PlayabilityEntity> playability) {
+
+		List<PlayabilityEntity> abilityUser = findAvailabilityUser(user);
+
+		for (PlayabilityEntity pl : abilityUser) {
+			if (pl.equals(playability)) {
+				pl.setStartDate(null);
+				pl.setEndDate(null);
+				pl.setComment("I can't play in this moment.");
+			}
+		}
+		return playabilityUser;
+	}
+
+	private List<PlayabilityEntity> findAvailabilityUser(UserEntity user) {
+		int id = user.getId();
+		List<PlayabilityEntity> abilityUser = null;
+		for (UserEntity us : playabilityUser.keySet()) {
+			if (us.getId() == id) {
+				abilityUser = playabilityUser.get(us);
+			}
+		}
+		return abilityUser;
 	}
 }

@@ -32,12 +32,6 @@ public class AppTest3 {
 	}
 
 	@Test
-	public void shouldReturnSizeUserDAO() {
-		assertTrue(service.getAllUsers().size() > 0);
-		assertEquals(3, service.getAllUsers().size());
-	}
-
-	@Test
 	public void shouldReturnSizeGameDAO() {
 		assertTrue(gameService.getListAllGame().size() > 0);
 		assertEquals(4, gameService.getListAllGame().size());

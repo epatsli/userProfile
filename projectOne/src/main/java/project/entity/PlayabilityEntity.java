@@ -1,15 +1,16 @@
-package project.domain;
+package project.entity;
 
 import java.util.Date;
 
-public class Playability {
+public class PlayabilityEntity {
 	private Date startDate;
 	private Date endDate;
 	private String comment;
 
-	public Playability(Date startDate, Date endDate) {
+	public PlayabilityEntity(Date startDate, Date endDate, String comment) {
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.comment = "";
 	}
 
 	public Date getStartDate() {

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.entity.GameEntity;
@@ -14,8 +15,8 @@ public class GameDAO {
 
 	private Set<GameEntity> listGame = new HashSet<>();
 
+	@Autowired
 	public GameDAO() {
-
 		listGame.add(new GameEntity("Checkers", 2));
 		listGame.add(new GameEntity("Chess", 2));
 		listGame.add(new GameEntity("Poker", 3));

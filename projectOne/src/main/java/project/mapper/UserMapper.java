@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 import project.entity.UserEntity;
-import project.to.UserDTO;
 import project.to.UserTO;
 
 @Component
@@ -20,7 +19,8 @@ public class UserMapper {
 	public static UserTO mapToTO(UserEntity userEntity) {
 
 		return new UserTO(userEntity.getId(), userEntity.getFirstName(), userEntity.getLastName(),
-				userEntity.getEmail(), userEntity.getPassword(), userEntity.getLifeMotto());
+				userEntity.getEmail(), userEntity.getPassword(), userEntity.getLifeMotto(),
+				userEntity.getPlayability());
 	}
 
 	public static List<UserEntity> mapUserToEntity(List<UserTO> allUserTO) {
@@ -31,18 +31,6 @@ public class UserMapper {
 	public static UserEntity mapToEntity(UserTO userTo) {
 
 		return new UserEntity(userTo.getId(), userTo.getFirstName(), userTo.getLastName(), userTo.getEmail(),
-				userTo.getPassword(), userTo.getLifeMotto());
+				userTo.getPassword(), userTo.getLifeMotto(), userTo.getPlayability());
 	}
-
-	/////////////
-	public static List<UserDTO> mapUser(List<UserEntity> allUsers) {
-
-		return allUsers.stream().map(u -> mapToDto(u)).collect(Collectors.toList());
-	}
-
-	public static UserDTO mapToDto(UserEntity userEntity) {
-
-		return new UserDTO(userEntity.getFirstName(), userEntity.getLastName());
-	}
-
 }

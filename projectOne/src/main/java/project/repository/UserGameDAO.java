@@ -3,6 +3,7 @@ package project.repository;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.entity.GameEntity;
@@ -17,8 +18,8 @@ public class UserGameDAO {
 	UserEntity user;
 	GameDAO setGame;
 
+	@Autowired
 	public UserGameDAO() {
-
 		listGameUserOne.add(new GameEntity("Checkers", 2));
 		listGameUserOne.add(new GameEntity("Poker", 3));
 		listGameUserOne.add(new GameEntity("Queue", 4));

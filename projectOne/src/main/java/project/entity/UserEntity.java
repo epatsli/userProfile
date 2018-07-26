@@ -1,10 +1,8 @@
 package project.entity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.lang.NonNull;
-
-import project.domain.Playability;
 
 public class UserEntity {
 
@@ -24,9 +22,10 @@ public class UserEntity {
 
 	private String lifeMotto;
 
-	private ArrayList<Playability> playability;
+	private List<PlayabilityEntity> playability;
 
-	public UserEntity(int id, String firstName, String lastName, String email, String password, String lifeMotto) {
+	public UserEntity(int id, String firstName, String lastName, String email, String password, String lifeMotto,
+			List<PlayabilityEntity> playability) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -85,8 +84,12 @@ public class UserEntity {
 		this.id = id;
 	}
 
-	public ArrayList<Playability> getPlayability() {
+	public List<PlayabilityEntity> getPlayability() {
 		return playability;
+	}
+
+	public void setPlayability(List<PlayabilityEntity> playability) {
+		this.playability = playability;
 	}
 
 	@Override

@@ -1,8 +1,9 @@
 package project.to;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import project.domain.Playability;
+import project.entity.PlayabilityEntity;
 
 public class UserTO {
 	private int id;
@@ -11,9 +12,10 @@ public class UserTO {
 	private String lastName;
 	private String password;
 	private String lifeMotto;
-	private ArrayList<Playability> playability;
+	private ArrayList<PlayabilityEntity> playability;
 
-	public UserTO(int id, String firstName, String lastName, String email, String password, String lifeMotto) {
+	public UserTO(int id, String firstName, String lastName, String email, String password, String lifeMotto,
+			List<PlayabilityEntity> playability) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -71,11 +73,11 @@ public class UserTO {
 		this.lifeMotto = lifeMotto;
 	}
 
-	public ArrayList<Playability> getPlayability() {
+	public ArrayList<PlayabilityEntity> getPlayability() {
 		return playability;
 	}
 
-	public void setPlayability(ArrayList<Playability> playability) {
+	public void setPlayability(ArrayList<PlayabilityEntity> playability) {
 		this.playability = playability;
 	}
 

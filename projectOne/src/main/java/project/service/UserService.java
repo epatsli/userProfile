@@ -1,11 +1,14 @@
 package project.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import project.entity.UserEntity;
+import project.mapper.PlayabilitityMapper;
 import project.mapper.UserMapper;
 import project.repository.UserDAO;
+import project.to.PlayabilityTO;
 import project.to.UserTO;
 
 @Service
@@ -13,7 +16,6 @@ public class UserService {
 
 	private UserDAO userDAO;
 
-	@Autowired
 	public UserService() {
 
 		this.userDAO = new UserDAO();
@@ -29,6 +31,12 @@ public class UserService {
 
 		UserEntity userProfileInformacion = userDAO.showUserProfile(UserMapper.mapToEntity(user));
 		return UserMapper.mapToTO(userProfileInformacion);
+	}
+
+	public UserTO addAvailabilityHour(UserTO user, List<PlayabilityTO> availability) {
+		UserEntity userEntityPlay = userDAO.addAvailabilityHours(UserMapper.mapToEntity(user),
+				PlayabilitityMapper.mapPlayabilityToEntity(availability));
+		return UserMapper.mapToTO(userEntityPlay);
 	}
 
 	/*
