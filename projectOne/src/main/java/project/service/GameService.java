@@ -13,9 +13,9 @@ import project.to.GameTO;
 @Service
 public class GameService {
 
-	@Autowired
 	private GameDAO gameData;
 
+	@Autowired
 	public GameService() {
 		this.gameData = new GameDAO();
 	}

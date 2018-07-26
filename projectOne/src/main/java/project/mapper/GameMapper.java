@@ -12,7 +12,7 @@ import project.to.GameTO;
 @Component
 public class GameMapper {
 
-	public static List<GameTO> mapGameToEntity(Set<GameEntity> allGame) {
+	public static List<GameTO> mapGameTO(Set<GameEntity> allGame) {
 
 		return allGame.stream().map(GameMapper::mapTO).collect(Collectors.toList());
 	}
@@ -22,7 +22,7 @@ public class GameMapper {
 		return new GameTO(gameEntity.getName(), gameEntity.getNumberPlayer());
 	}
 
-	public static Set<GameEntity> mapGametoTO(List<GameTO> allGame) {
+	public static Set<GameEntity> mapGameToEntity(List<GameTO> allGame) {
 
 		return (Set<GameEntity>) allGame.stream().map(GameMapper::mapToEntity).collect(Collectors.toList());
 	}

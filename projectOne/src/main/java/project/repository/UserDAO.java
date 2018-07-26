@@ -22,24 +22,20 @@ public class UserDAO {
 		userList.add(new UserEntity(3, "Michal", "Tyka", "michal.tyka@gmail.com", "1234", "I don't belive."));
 	}
 
-	public UserEntity getUserById(int i) {
-		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
-	}
-
-	public UserEntity getUserProfile(int i) {
-		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
-	}
-
-	public void setUserProfile(int i, String newName, String newLastName, String newMail, String newPassword,
-			String newLifeMotto) {
-		UserEntity user = getUserById(i);
-		user.setFirstName(newName);
-		user.setLastName(newLastName);
-		user.setEmail(newMail);
-		user.setPassword(newPassword);
-		user.setLifeMotto(newLifeMotto);
-	}
-
+	/*
+	 * public UserEntity getUserById(int i) { return userList.stream().filter(u
+	 * -> u.getId() == i).collect(Collectors.toList()).get(0); }
+	 * 
+	 * public UserEntity getUserProfile(int i) { return
+	 * userList.stream().filter(u -> u.getId() ==
+	 * i).collect(Collectors.toList()).get(0); }
+	 * 
+	 * public void setUserProfile(int i, String newName, String newLastName,
+	 * String newMail, String newPassword, String newLifeMotto) { UserEntity
+	 * user = getUserById(i); user.setFirstName(newName);
+	 * user.setLastName(newLastName); user.setEmail(newMail);
+	 * user.setPassword(newPassword); user.setLifeMotto(newLifeMotto); }
+	 */
 	public List<UserEntity> getAllUsers() {
 		return userList;
 	}
@@ -57,5 +53,24 @@ public class UserDAO {
 	public void addAvailabilityHours(int i, List<Playability> playability) {
 		UserEntity user = userList.get(i - 1);
 		playabilityUser.put(user, playability);
+	}
+
+	public UserEntity updateUserProfile(UserEntity user) {
+		int id = user.getId();
+		int i = 0;
+		for (UserEntity usr : userList) {
+			if (usr.getId() == id) {
+				listUser.remove(i);
+				listUser.add(i, user);
+			}
+			i++;
+
+		}
+		return user;
+	}
+
+	public UserEntity showUserProfile(UserEntity user) {
+		user.toString();
+		return user;
 	}
 }

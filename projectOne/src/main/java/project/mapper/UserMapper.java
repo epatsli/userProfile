@@ -34,7 +34,7 @@ public class UserMapper {
 				userTo.getPassword(), userTo.getLifeMotto());
 	}
 
-	///
+	/////////////
 	public static List<UserDTO> mapUser(List<UserEntity> allUsers) {
 
 		return allUsers.stream().map(u -> mapToDto(u)).collect(Collectors.toList());
