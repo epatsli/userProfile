@@ -37,7 +37,7 @@ public class UserService {
 	}
 
 	@LogExecutionTime
-	public UserTO addAvailabilityHour(UserTO user, List<PlayabilityTO> availability) throws InterruptedException {
+	public UserTO addAvailabilityHour(UserTO user, List<PlayabilityTO> availability) {
 		UserEntity userEntityPlay = userDAO.addAvailabilityHours(UserMapper.mapToEntity(user),
 				PlayabilitityMapper.mapPlayabilityToEntity(availability));
 		return UserMapper.mapToTO(userEntityPlay);

@@ -71,14 +71,13 @@ public class UserServiceTest {
 	public void shoulEditAvailabilityHour() {
 		PlayabilityTO pe = new PlayabilityTO(DateUtils.getDateFromText("26-07-18:18:39:00"),
 				DateUtils.getDateFromText("26-07-18:18:39:00"));
-
 		UserTO user = new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null);
 		Mockito.when(userDAOMock.editAvailabilityHours(any(UserEntity.class), any())).thenReturn(
 				new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
 
 		userService.editAvailabilityHour(user, Collections.singletonList(pe));
 
-		Mockito.verify(userDAOMock, times(1)).addAvailabilityHours(any(UserEntity.class), any());
+		Mockito.verify(userDAOMock, times(1)).editAvailabilityHours(any(UserEntity.class), any());
 
 	}
 
