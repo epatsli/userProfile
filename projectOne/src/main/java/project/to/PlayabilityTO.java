@@ -7,7 +7,7 @@ public class PlayabilityTO {
 	private Date endDate = new Date();
 	private String comment;
 
-	public PlayabilityTO(Date startDate, Date endDate, String comment) {
+	public PlayabilityTO(Date startDate, Date endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.comment = "";

@@ -5,12 +5,11 @@ import java.util.Date;
 public class PlayabilityEntity {
 	private Date startDate = new Date();
 	private Date endDate = new Date();
-	private String comment;
+	private String comment = "";
 
-	public PlayabilityEntity(Date startDate, Date endDate, String comment) {
+	public PlayabilityEntity(Date startDate, Date endDate) {
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.comment = "";
 	}
 
 	public Date getStartDate() {

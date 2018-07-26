@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import aspect.Aspect.LogExecutionTime;
 import project.entity.UserEntity;
 import project.mapper.PlayabilitityMapper;
 import project.mapper.UserMapper;
@@ -35,7 +36,8 @@ public class UserService {
 		return UserMapper.mapToTO(userProfileInformacion);
 	}
 
-	public UserTO addAvailabilityHour(UserTO user, List<PlayabilityTO> availability) {
+	@LogExecutionTime
+	public UserTO addAvailabilityHour(UserTO user, List<PlayabilityTO> availability) throws InterruptedException {
 		UserEntity userEntityPlay = userDAO.addAvailabilityHours(UserMapper.mapToEntity(user),
 				PlayabilitityMapper.mapPlayabilityToEntity(availability));
 		return UserMapper.mapToTO(userEntityPlay);

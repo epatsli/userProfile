@@ -17,8 +17,7 @@ public class PlayabilitityMapper {
 
 	public static PlayabilityTO mapToTO(PlayabilityEntity playabilityEntity) {
 
-		return new PlayabilityTO(playabilityEntity.getStartDate(), playabilityEntity.getEndDate(),
-				playabilityEntity.getComment());
+		return new PlayabilityTO(playabilityEntity.getStartDate(), playabilityEntity.getEndDate());
 	}
 
 	public static List<PlayabilityEntity> mapPlayabilityToEntity(List<PlayabilityTO> playabilityTO) {
@@ -28,6 +27,6 @@ public class PlayabilitityMapper {
 
 	public static PlayabilityEntity mapToEntity(PlayabilityTO availability) {
 
-		return new PlayabilityEntity(availability.getStartDate(), availability.getEndDate(), availability.getComment());
+		return new PlayabilityEntity(availability.getStartDate(), availability.getEndDate());
 	}
 }

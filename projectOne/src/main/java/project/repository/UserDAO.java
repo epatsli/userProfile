@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import aspect.Aspect.LogExecutionTime;
 import project.entity.PlayabilityEntity;
 import project.entity.UserEntity;
 
@@ -37,7 +36,7 @@ public class UserDAO {
 	 * user.setLastName(newLastName); user.setEmail(newMail);
 	 * user.setPassword(newPassword); user.setLifeMotto(newLifeMotto); }
 	 */
-	@LogExecutionTime
+
 	public List<UserEntity> getAllUsers() {
 		return userList;
 	}
@@ -45,11 +44,6 @@ public class UserDAO {
 	public UserEntity getUserByEmail(String email) {
 		return userList.stream().filter(u -> u.getEmail() == email).collect(Collectors.toList()).get(0);
 	}
-
-	///
-	// List<UserEntity> listUser = new ArrayList<UserEntity>();
-	// List<ArrayList<Playability>> list = new
-	/// ArrayList<ArrayList<Playability>>();
 
 	public UserEntity updateUserProfile(UserEntity user) {
 		int id = user.getId();
