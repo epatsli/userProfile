@@ -62,7 +62,6 @@ public class UserDAO {
 				userList.add(i, user);
 			}
 			i++;
-
 		}
 		return user;
 	}
@@ -85,43 +84,34 @@ public class UserDAO {
 		return user;
 	}
 
-	public Map<UserEntity, List<PlayabilityEntity>> editAvailabilityHours(UserEntity user,
-			List<PlayabilityEntity> playability) {
+	public UserEntity editAvailabilityHours(UserEntity user, List<PlayabilityEntity> playability) {
 
-		List<PlayabilityEntity> abilityUser = findAvailabilityUser(user);
+		int id = user.getId();
+		List<PlayabilityEntity> abilityUser = userList.stream().filter(u -> u.getId() == id)
+				.collect(Collectors.toList()).get(0).getPlayability();
 
 		for (PlayabilityEntity pl : abilityUser) {
 			if (pl.equals(playability)) {
 				abilityUser.remove(pl);
-				addAvailabilityHours(user, playability);
+				abilityUser.add(playability.get(0));
 			}
 		}
-		return playabilityUser;
+		return user;
 	}
 
-	public Map<UserEntity, List<PlayabilityEntity>> deleteAvailabilityHours(UserEntity user,
-			List<PlayabilityEntity> playability) {
-
-		List<PlayabilityEntity> abilityUser = findAvailabilityUser(user);
+	public UserEntity deleteAvailabilityHours(UserEntity user, List<PlayabilityEntity> playability) {
+		int id = user.getId();
+		List<PlayabilityEntity> abilityUser = userList.stream().filter(u -> u.getId() == id)
+				.collect(Collectors.toList()).get(0).getPlayability();
 
 		for (PlayabilityEntity pl : abilityUser) {
-			if (pl.equals(playability)) {
+			if (pl.equals(playability.get(0))) {
 				pl.setStartDate(null);
 				pl.setEndDate(null);
 				pl.setComment("I can't play in this moment.");
 			}
 		}
-		return playabilityUser;
+		return user;
 	}
 
-	private List<PlayabilityEntity> findAvailabilityUser(UserEntity user) {
-		int id = user.getId();
-		List<PlayabilityEntity> abilityUser = null;
-		for (UserEntity us : playabilityUser.keySet()) {
-			if (us.getId() == id) {
-				abilityUser = playabilityUser.get(us);
-			}
-		}
-		return abilityUser;
-	}
 }

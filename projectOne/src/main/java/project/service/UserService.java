@@ -39,6 +39,18 @@ public class UserService {
 		return UserMapper.mapToTO(userEntityPlay);
 	}
 
+	public UserTO editAvailabilityHour(UserTO user, List<PlayabilityTO> availability) {
+		UserEntity userPlay = userDAO.editAvailabilityHours(UserMapper.mapToEntity(user),
+				PlayabilitityMapper.mapPlayabilityToEntity(availability));
+		return UserMapper.mapToTO(userPlay);
+	}
+
+	public UserTO removeAvailabilityHour(UserTO user, List<PlayabilityTO> availability) {
+		UserEntity userPlay = userDAO.deleteAvailabilityHours(UserMapper.mapToEntity(user),
+				PlayabilitityMapper.mapPlayabilityToEntity(availability));
+		return UserMapper.mapToTO(userPlay);
+	}
+
 	/*
 	 * public UserEntity getUserById(int i) { return userDAO.getUserById(i); }
 	 * 
