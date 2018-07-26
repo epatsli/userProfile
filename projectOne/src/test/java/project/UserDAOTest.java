@@ -2,13 +2,19 @@ package project;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import project.entity.PlayabilityEntity;
 import project.entity.UserEntity;
 import project.repository.UserDAO;
+import utils.DateUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDAOTest {
@@ -38,10 +44,16 @@ public class UserDAOTest {
 		assertEquals("Adam", userDAO.updateUserProfile(user).getFirstName());
 		assertEquals("jan.nowak@gmail.com", userDAO.updateUserProfile(user).getEmail());
 	}
-	/*
-	 * @Test public void shouldAddPlayability() { UserEntity user =
-	 * userDAO.getAllUsers().get(2); assertEquals(null, user.getPlayability());
-	 * PlayabilityEntity newPlay=new PlayabilityEntity(2017-02-03, 2017-02-03,
-	 * ""); assertEquals(null, ); }
-	 */
+
+	@Test
+	public void shouldAddPlayability() {
+		PlayabilityEntity pe = new PlayabilityEntity(DateUtils.getDateFromText("25-07-18:12:39:00"),
+				DateUtils.getDateFromText("25-07-18:18:39:00"));
+		List<PlayabilityEntity> list = new ArrayList<PlayabilityEntity>();
+		list.add(pe);
+		UserEntity user = userDAO.getAllUsers().get(2);
+		userDAO.addAvailabilityHours(user, Collections.singletonList(pe));
+		assertEquals(list, user.getPlayability());
+	}
+
 }
