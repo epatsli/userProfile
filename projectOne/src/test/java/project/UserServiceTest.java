@@ -81,4 +81,18 @@ public class UserServiceTest {
 
 	}
 
+	@Test
+	public void shoulRemoveAvailabilityHour() {
+		PlayabilityTO pe = new PlayabilityTO(DateUtils.getDateFromText("26-07-18:18:39:00"),
+				DateUtils.getDateFromText("26-07-18:18:39:00"));
+		UserTO user = new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null);
+		Mockito.when(userDAOMock.deleteAvailabilityHours(any(UserEntity.class), any())).thenReturn(
+				new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
+
+		userService.removeAvailabilityHour(user, Collections.singletonList(pe));
+
+		Mockito.verify(userDAOMock, times(1)).deleteAvailabilityHours(any(UserEntity.class), any());
+
+	}
+
 }
