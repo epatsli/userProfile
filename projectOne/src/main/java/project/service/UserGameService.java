@@ -1,8 +1,8 @@
 package project.service;
 
 import java.util.List;
-import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.entity.GameEntity;
@@ -17,23 +17,24 @@ public class UserGameService {
 
 	private UserGameDAO userGameDAO;
 
-	public UserGameService() {
-		this.userGameDAO = new UserGameDAO();
+	@Autowired
+	public UserGameService(UserGameDAO userGameDAO) {
+		this.userGameDAO = userGameDAO;
 	}
 
 	public List<GameTO> getUserGame(UserTO userTO) throws Exception {
 
-		Set<GameEntity> gameUser = userGameDAO.returnListGame(UserMapper.mapToEntity(userTO));
+		List<GameEntity> gameUser = userGameDAO.returnListGame(UserMapper.mapToEntity(userTO));
 		return GameMapper.mapGameTO(gameUser);
 	}
 
 	public List<GameTO> deleteGame(UserTO user, GameTO game) throws Exception {
-		Set<GameEntity> gameUser = userGameDAO.deleteGame(UserMapper.mapToEntity(user), GameMapper.mapToEntity(game));
+		List<GameEntity> gameUser = userGameDAO.deleteGame(UserMapper.mapToEntity(user), GameMapper.mapToEntity(game));
 		return GameMapper.mapGameTO(gameUser);
 	}
 
 	public List<GameTO> addGame(UserTO user, GameTO game) throws Exception {
-		Set<GameEntity> gameUser = userGameDAO.addNewGame(UserMapper.mapToEntity(user), GameMapper.mapToEntity(game));
+		List<GameEntity> gameUser = userGameDAO.addNewGame(UserMapper.mapToEntity(user), GameMapper.mapToEntity(game));
 		return GameMapper.mapGameTO(gameUser);
 
 	}

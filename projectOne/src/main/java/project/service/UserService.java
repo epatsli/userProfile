@@ -2,6 +2,7 @@ package project.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import project.entity.UserEntity;
@@ -14,11 +15,12 @@ import project.to.UserTO;
 @Service
 public class UserService {
 
-	private UserDAO userDAO;
+	private final UserDAO userDAO;
 
-	public UserService() {
+	@Autowired
+	public UserService(UserDAO userDAO) {
 
-		this.userDAO = new UserDAO();
+		this.userDAO = userDAO;
 	}
 
 	public UserTO updateDateUser(UserTO user) {

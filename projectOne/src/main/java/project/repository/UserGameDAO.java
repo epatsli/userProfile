@@ -1,9 +1,8 @@
 package project.repository;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.entity.GameEntity;
@@ -12,13 +11,12 @@ import project.entity.UserEntity;
 @Repository
 public class UserGameDAO {
 
-	Set<GameEntity> listGameUserOne = new HashSet<>();
-	Set<GameEntity> listGameUserTwo = new HashSet<>();
-	Set<GameEntity> listGameUserThree = new HashSet<>();
+	List<GameEntity> listGameUserOne = new ArrayList<>();
+	List<GameEntity> listGameUserTwo = new ArrayList<>();
+	List<GameEntity> listGameUserThree = new ArrayList<>();
 	UserEntity user;
 	GameDAO setGame;
 
-	@Autowired
 	public UserGameDAO() {
 		listGameUserOne.add(new GameEntity("Checkers", 2));
 		listGameUserOne.add(new GameEntity("Poker", 3));
@@ -50,7 +48,7 @@ public class UserGameDAO {
 	 * }
 	 */
 	////
-	public Set<GameEntity> returnListGame(UserEntity user) throws Exception {
+	public List<GameEntity> returnListGame(UserEntity user) throws Exception {
 		if (user.getId() == 1) {
 			return listGameUserOne;
 		} else if (user.getId() == 2) {
@@ -61,18 +59,19 @@ public class UserGameDAO {
 			throw new Exception("This user don't have list of games.");
 	}
 
-	public Set<GameEntity> deleteGame(UserEntity user, GameEntity game) throws Exception {
-		Set<GameEntity> setGame = returnListGame(user);
+	public List<GameEntity> deleteGame(UserEntity user, GameEntity game) throws Exception {
+		List<GameEntity> setGame = returnListGame(user);
 		for (GameEntity gm : setGame) {
 			if (game.getName().equals(gm.getName()))
 				setGame.remove(game);
+			break;
 		}
 		return setGame;
 	}
 
-	public Set<GameEntity> addNewGame(UserEntity user, GameEntity game) throws Exception {
+	public List<GameEntity> addNewGame(UserEntity user, GameEntity game) throws Exception {
 
-		Set<GameEntity> setGame = returnListGame(user);
+		List<GameEntity> setGame = returnListGame(user);
 		int count = 0;
 		for (GameEntity gm : setGame) {
 			if (gm.getName().equals(game.getName())) {

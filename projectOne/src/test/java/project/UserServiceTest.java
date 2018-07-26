@@ -20,12 +20,16 @@ public class UserServiceTest {
 
 	@InjectMocks
 	private UserService userService;
-	UserEntity user = new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.");
 
+	@SuppressWarnings("deprecation")
 	@Test
-	public void size() {
-		Mockito.when(userDAOMock.updateUserProfile(user)).thenReturn(user);
-		UserTO use = new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.");
+	public void shouldUpdateProfile() {
+		UserEntity user = new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.",
+				null);
+		UserTO use = new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null);
+
+		Mockito.when(userDAOMock.updateUserProfile(Mockito.anyObject())).thenReturn(user);
 		userService.updateDateUser(use);
 	}
+
 }

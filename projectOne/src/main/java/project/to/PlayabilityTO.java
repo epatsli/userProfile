@@ -3,8 +3,8 @@ package project.to;
 import java.util.Date;
 
 public class PlayabilityTO {
-	private Date startDate;
-	private Date endDate;
+	private Date startDate = new Date();
+	private Date endDate = new Date();
 	private String comment;
 
 	public PlayabilityTO(Date startDate, Date endDate, String comment) {

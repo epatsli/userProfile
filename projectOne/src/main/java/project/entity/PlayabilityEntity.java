@@ -3,8 +3,8 @@ package project.entity;
 import java.util.Date;
 
 public class PlayabilityEntity {
-	private Date startDate;
-	private Date endDate;
+	private Date startDate = new Date();
+	private Date endDate = new Date();
 	private String comment;
 
 	public PlayabilityEntity(Date startDate, Date endDate, String comment) {

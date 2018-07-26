@@ -1,23 +1,18 @@
 package project.service;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import project.entity.GameEntity;
 import project.repository.GameDAO;
 
 @Service
 public class GameService {
 
-	private GameDAO gameData;
+	private final GameDAO gameData;
 
-	public GameService() {
-		this.gameData = new GameDAO();
-	}
-
-	public List<GameEntity> getListAllGame() {
-		return gameData.getListGame();
+	@Autowired
+	public GameService(GameDAO gameData) {
+		this.gameData = gameData;
 	}
 
 	public boolean existGame(String nameGame) {

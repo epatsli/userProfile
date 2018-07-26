@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import aspect.Aspect.LogExecutionTime;
@@ -18,7 +17,6 @@ public class UserDAO {
 
 	private List<UserEntity> userList = new ArrayList<UserEntity>();
 
-	@Autowired
 	public UserDAO() {
 		userList.add(new UserEntity(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
 		userList.add(new UserEntity(2, "Olga", "Kowalska", "ola.kowalska@gmail.com", "admin", "I want to die.", null));
@@ -55,13 +53,15 @@ public class UserDAO {
 
 	public UserEntity updateUserProfile(UserEntity user) {
 		int id = user.getId();
-		int i = 0;
+		int i = 1;
 		for (UserEntity usr : userList) {
 			if (usr.getId() == id) {
 				userList.remove(i);
 				userList.add(i, user);
+				break;
+			} else {
+				i++;
 			}
-			i++;
 		}
 		return user;
 	}
@@ -79,6 +79,7 @@ public class UserDAO {
 		for (UserEntity usr : userList) {
 			if (usr.getId() == id) {
 				usr.setPlayability(playability);
+				break;
 			}
 		}
 		return user;
@@ -94,6 +95,7 @@ public class UserDAO {
 			if (pl.equals(playability)) {
 				abilityUser.remove(pl);
 				abilityUser.add(playability.get(0));
+				break;
 			}
 		}
 		return user;
@@ -109,6 +111,7 @@ public class UserDAO {
 				pl.setStartDate(null);
 				pl.setEndDate(null);
 				pl.setComment("I can't play in this moment.");
+				break;
 			}
 		}
 		return user;

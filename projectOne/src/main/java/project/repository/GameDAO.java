@@ -1,11 +1,9 @@
 package project.repository;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import project.entity.GameEntity;
@@ -13,9 +11,8 @@ import project.entity.GameEntity;
 @Repository
 public class GameDAO {
 
-	private Set<GameEntity> listGame = new HashSet<>();
+	private List<GameEntity> listGame = new ArrayList<GameEntity>();
 
-	@Autowired
 	public GameDAO() {
 		listGame.add(new GameEntity("Checkers", 2));
 		listGame.add(new GameEntity("Chess", 2));
@@ -36,7 +33,8 @@ public class GameDAO {
 		return listGame.stream().filter(g -> g.getName() == name).collect(Collectors.toList()).get(0);
 	}
 
-	public Set<GameEntity> getAllGame() {
+	public List<GameEntity> getAllGame() {
 		return listGame;
 	}
+
 }

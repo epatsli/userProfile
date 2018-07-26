@@ -35,7 +35,13 @@ public class UserDAOTest {
 		assertEquals("Jan", userDAO.getAllUsers().get(0).getFirstName());
 		UserEntity user = new UserEntity(1, "Adam", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.",
 				null);
-		assertEquals("Adam", userDAO.updateUserProfile(user));
+		assertEquals("Adam", userDAO.updateUserProfile(user).getFirstName());
+		assertEquals("jan.nowak@gmail.com", userDAO.updateUserProfile(user).getEmail());
 	}
-
+	/*
+	 * @Test public void shouldAddPlayability() { UserEntity user =
+	 * userDAO.getAllUsers().get(2); assertEquals(null, user.getPlayability());
+	 * PlayabilityEntity newPlay=new PlayabilityEntity(2017-02-03, 2017-02-03,
+	 * ""); assertEquals(null, ); }
+	 */
 }
