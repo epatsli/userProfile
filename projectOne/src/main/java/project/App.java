@@ -16,7 +16,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 
 @SpringBootApplication
-@ComponentScan
+
+@ComponentScan(basePackages = { "rest" })
 public class App {
 	public static void main(String[] args) {
 
