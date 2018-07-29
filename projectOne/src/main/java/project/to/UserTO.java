@@ -14,6 +14,9 @@ public class UserTO {
 	private String lifeMotto;
 	private ArrayList<PlayabilityEntity> playability;
 
+	public UserTO() {
+	}
+
 	public UserTO(int id, String firstName, String lastName, String email, String password, String lifeMotto,
 			List<PlayabilityEntity> playability) {
 		this.id = id;

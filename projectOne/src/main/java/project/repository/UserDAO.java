@@ -23,7 +23,8 @@ public class UserDAO {
 	}
 
 	public UserEntity getUserById(int i) {
-		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
+		UserEntity user = userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
+		return user;
 	}
 	/*
 	 * public UserEntity getUserById(int i) { return userList.stream().filter(u
@@ -50,7 +51,7 @@ public class UserDAO {
 
 	public UserEntity updateUserProfile(UserEntity user) {
 		int id = user.getId();
-		int i = 1;
+		int i = 0;
 		for (UserEntity usr : userList) {
 			if (usr.getId() == id) {
 				userList.remove(i);
