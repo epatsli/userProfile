@@ -1,10 +1,12 @@
 package rest;
 
+import java.awt.PageAttributes.MediaType;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,12 +32,6 @@ public class UserRestControler {
 		return "Some text";
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public UserTO getUser() {
-		return service.updateDateUser(
-				new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
-	}
-
 	@RequestMapping(value = "/allUser", method = RequestMethod.GET)
 	public List<UserTO> getAllUser() {
 		return service.getAllUsers();
@@ -45,4 +41,16 @@ public class UserRestControler {
 	public UserTO getUserById(@PathVariable("id") int id) {
 		return service.getUserById(id);
 	}
+
+	// @PutMapping(value = "/{id}")
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public void updateUserById(@RequestBody UserTO user) {
+		service.updateDateUser(user);
+	}
+	/*
+	 * @RequestMapping(value = "/user", method = RequestMethod.GET) public
+	 * UserTO getUser() { return service.updateDateUser( new UserTO(1, "Jan",
+	 * "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
+	 * }
+	 */
 }
