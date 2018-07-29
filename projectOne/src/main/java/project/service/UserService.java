@@ -55,6 +55,16 @@ public class UserService {
 		return UserMapper.mapToTO(userPlay);
 	}
 
+	public UserTO getUserById(int i) {
+		UserEntity user = userDAO.getUserById(i);
+		return UserMapper.mapToTO(user);
+	}
+
+	public List<UserTO> getAllUsers() {
+		List<UserEntity> allUser = userDAO.getAllUsers();
+		return (List<UserTO>) UserMapper.mapUsersTO(allUser);
+	}
+
 	/*
 	 * public UserEntity getUserById(int i) { return userDAO.getUserById(i); }
 	 * 

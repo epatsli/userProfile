@@ -1,16 +1,23 @@
 package rest;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import project.service.UserService;
+import project.to.UserTO;
 
 @Controller
 @ResponseBody
 public class UserRestControler {
 
-	// @Autowired
-	// private UserService service;
+	@Autowired
+	private UserService service;
 
 	@RequestMapping(value = "/some", method = RequestMethod.GET)
 	public String some() {
@@ -21,5 +28,21 @@ public class UserRestControler {
 
 		System.out.println("123");
 		return "Some text";
+	}
+
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
+	public UserTO getUser() {
+		return service.updateDateUser(
+				new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
+	}
+
+	@RequestMapping(value = "/allUser", method = RequestMethod.GET)
+	public List<UserTO> getAllUser() {
+		return service.getAllUsers();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public UserTO getUserById(@PathVariable("id") int id) {
+		return service.getUserById(id);
 	}
 }

@@ -22,6 +22,9 @@ public class UserDAO {
 		userList.add(new UserEntity(3, "Michal", "Tyka", "michal.tyka@gmail.com", "1234", "I don't belive.", null));
 	}
 
+	public UserEntity getUserById(int i) {
+		return userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
+	}
 	/*
 	 * public UserEntity getUserById(int i) { return userList.stream().filter(u
 	 * -> u.getId() == i).collect(Collectors.toList()).get(0); }
