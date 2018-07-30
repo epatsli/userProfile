@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,9 +40,13 @@ public class UserRestControler {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public UserTO getUserById(@PathVariable("id") int id) {
-
-		UserTO user = service.getUserById(id);
-		return user;
+		try {
+			UserTO user = service.getUserById(id);
+			return user;
+		} catch (Exception ex) {
+			System.err.println("IndexOutOfBoundsException: " + ex.getMessage());
+		}
+		return null;
 
 	}
 
@@ -67,14 +72,8 @@ public class UserRestControler {
 	// RequestMethod.GET)
 
 	@RequestMapping(value = "/find", method = RequestMethod.GET)
-	public List<UserTO> getUserByFilter(@RequestBody FilterUserTO userToFilter) {
-		List<UserTO> user = service.getUserByFilter(userToFilter);
-		return user;
+	public ResponseEntity<List<UserTO>> getUserByFilter(@RequestBody FilterUserTO userToFilter) {
+		return ResponseEntity.ok().body(service.getUserByFilter(userToFilter));
 	}
-	/*
-	 * @RequestMapping(value = "/user", method = RequestMethod.GET) public
-	 * UserTO getUser() { return service.updateDateUser( new UserTO(1, "Jan",
-	 * "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null));
-	 * }
-	 */
+
 }

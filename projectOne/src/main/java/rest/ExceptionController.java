@@ -1,22 +1,21 @@
 package rest;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import exception.UnknownIDException;
 
-@Controller
 @ControllerAdvice
 public class ExceptionController {
 
-	@ExceptionHandler(value = UnknownIDException.class)
-	public static ModelAndView prepareExceptionModelAndView(String exceptionMessage) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("exceptionMessage", exceptionMessage);
-		mav.setViewName("error");
+	@ResponseBody
+	@ExceptionHandler(NullPointerException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public UnknownIDException businessExceptionHandler(Error ex) {
 
-		return mav;
+		return new UnknownIDException();
 	}
 }

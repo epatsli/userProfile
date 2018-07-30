@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import project.entity.PlayabilityEntity;
 import project.entity.UserEntity;
+import project.to.PlayabilityTO;
 
 @Repository
 public class UserDAO {
@@ -115,8 +116,8 @@ public class UserDAO {
 		return user;
 	}
 
-	public List<UserEntity> getUserByFilter(String name, String lastName, ArrayList<PlayabilityEntity> arrayList) {
-		return userList.stream().filter(u -> u.getFirstName().equals(name) && u.getLastName().equals(lastName)
+	public List<UserEntity> getUserByFilter(String name, String lastName, ArrayList<PlayabilityTO> arrayList) {
+		return userList.stream().filter(u -> u.getFirstName().startsWith(name) && u.getLastName().equals(lastName)
 				&& u.getPlayability().contains(arrayList)).collect(Collectors.toList());
 	}
 

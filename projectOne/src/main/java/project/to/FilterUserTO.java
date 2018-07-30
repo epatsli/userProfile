@@ -2,12 +2,10 @@ package project.to;
 
 import java.util.ArrayList;
 
-import project.entity.PlayabilityEntity;
-
 public class FilterUserTO {
 	private String firstName;
 	private String lastName;
-	private ArrayList<PlayabilityEntity> playability;
+	private ArrayList<PlayabilityTO> playability;
 
 	public String getFirstName() {
 		return firstName;
@@ -25,11 +23,11 @@ public class FilterUserTO {
 		this.lastName = lastName;
 	}
 
-	public ArrayList<PlayabilityEntity> getPlayability() {
+	public ArrayList<PlayabilityTO> getPlayability() {
 		return playability;
 	}
 
-	public void setPlayability(ArrayList<PlayabilityEntity> playability) {
+	public void setPlayability(ArrayList<PlayabilityTO> playability) {
 		this.playability = playability;
 	}
 
