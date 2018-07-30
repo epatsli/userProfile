@@ -39,7 +39,6 @@ public class UserRestControler {
 		if (user == null)
 			throw new UnknownIDException();
 		return user;
-
 	}
 
 	// @PutMapping(value = "/{id}")
@@ -47,7 +46,13 @@ public class UserRestControler {
 	public void updateUserById(@RequestBody UserTO user) {
 		service.updateDateUser(user);
 	}
-
+	/*
+	 * @RequestMapping(value = "/{id}", method = RequestMethod.GET) public
+	 * List<UserTO> getUserByFilter(@PathVariable("firstName") String name,
+	 * 
+	 * @PathVariable("lastName") String lastName) { List<UserTO> user =
+	 * service.getUserByFilter(name, lastName); return user; }
+	 */
 	/*
 	 * @RequestMapping(value = "/user", method = RequestMethod.GET) public
 	 * UserTO getUser() { return service.updateDateUser( new UserTO(1, "Jan",

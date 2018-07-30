@@ -65,6 +65,11 @@ public class UserService {
 		return (List<UserTO>) UserMapper.mapUsersTO(allUser);
 	}
 
+	public List<UserTO> getUserByFilter(String name, String lastName) {
+		List<UserEntity> filterUser = userDAO.getUserByFilter(name, lastName);
+		return UserMapper.mapUsersTO(filterUser);
+	}
+
 	/*
 	 * public UserEntity getUserById(int i) { return userDAO.getUserById(i); }
 	 * 
