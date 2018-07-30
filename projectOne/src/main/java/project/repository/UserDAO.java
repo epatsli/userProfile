@@ -115,10 +115,9 @@ public class UserDAO {
 		return user;
 	}
 
-	public List<UserEntity> getUserByFilter(String name, String lastName) {
-		return userList.stream().filter(u -> u.getFirstName().equals(name) && u.getLastName().equals(lastName))
-				.collect(Collectors.toList());
-
+	public List<UserEntity> getUserByFilter(String name, String lastName, ArrayList<PlayabilityEntity> arrayList) {
+		return userList.stream().filter(u -> u.getFirstName().equals(name) && u.getLastName().equals(lastName)
+				&& u.getPlayability().contains(arrayList)).collect(Collectors.toList());
 	}
 
 }

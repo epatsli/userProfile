@@ -30,6 +30,7 @@ public class UserControlerTest {
 
 	@Test
 	public void shouldReturnUserById() throws Exception {
+
 		// given
 		final String expectedJSON = "{\"id\":1,\"email\":\"jan.nowak@gmail.com\",\"firstName\":\"Jan\",\"lastName\":\"Nowak\",\"password\":\"password\",\"lifeMotto\":\"Life is to short.\",\"playability\":null}";
 		final int expectedHttpStatus = HttpStatus.OK.value();

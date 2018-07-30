@@ -10,6 +10,7 @@ import project.entity.UserEntity;
 import project.mapper.PlayabilitityMapper;
 import project.mapper.UserMapper;
 import project.repository.UserDAO;
+import project.to.FilterUserTO;
 import project.to.PlayabilityTO;
 import project.to.UserTO;
 
@@ -65,11 +66,11 @@ public class UserService {
 		return (List<UserTO>) UserMapper.mapUsersTO(allUser);
 	}
 
-	public List<UserTO> getUserByFilter(String name, String lastName) {
-		List<UserEntity> filterUser = userDAO.getUserByFilter(name, lastName);
+	public List<UserTO> getUserByFilter(FilterUserTO user) {
+		List<UserEntity> filterUser = userDAO.getUserByFilter(user.getFirstName(), user.getLastName(),
+				user.getPlayability());
 		return UserMapper.mapUsersTO(filterUser);
 	}
-
 	/*
 	 * public UserEntity getUserById(int i) { return userDAO.getUserById(i); }
 	 * 
