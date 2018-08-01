@@ -1,4 +1,4 @@
-package rest;
+package project.controller;
 
 import java.util.List;
 
@@ -14,23 +14,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import exception.UnknownIDException;
 import project.service.UserService;
 import project.to.FilterUserTO;
 import project.to.UserTO;
 
 @Controller
 @ResponseBody
-public class UserRestControler {
+public class UserRestController {
 
 	@Autowired
 	private UserService service;
 
 	private ObjectMapper objectMapper = new ObjectMapper();
 
-	@RequestMapping(value = "/some", method = RequestMethod.GET)
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String some() {
-		System.out.println("123");
-		return "Some text";
+		return "This is home page";
 	}
 
 	@RequestMapping(value = "/allUser", method = RequestMethod.GET)
@@ -39,39 +39,23 @@ public class UserRestControler {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public UserTO getUserById(@PathVariable("id") int id) {
+	public UserTO getUserById(@PathVariable("id") long id) {
 		try {
 			UserTO user = service.getUserById(id);
 			return user;
 		} catch (Exception ex) {
-			System.err.println("IndexOutOfBoundsException: " + ex.getMessage());
+			new UnknownIDException();
 		}
 		return null;
 
 	}
 
-	/*
-	 * @RequestMapping(value = "/{id}", produces =
-	 * MediaType.APPLICATION_JSON_VALUE) public ResponseEntity<String>
-	 * getUserByIds(@PathVariable("id") int id) {
-	 * 
-	 * UserTO user = service.getUserById(id); try { return new
-	 * ResponseEntity<>(objectMapper.writeValueAsString(user), HttpStatus.OK); }
-	 * catch (JsonProcessingException e) { return new ResponseEntity<>(
-	 * "Error when preparing response", HttpStatus.INTERNAL_SERVER_ERROR); }
-	 * 
-	 * }
-	 */
-	// @PutMapping(value = "/{id}")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void updateUserById(@RequestBody UserTO user) {
 		service.updateDateUser(user);
 	}
 
-	// @RequestMapping(value = "/byName/{firstName}/{lastName}", method =
-	// RequestMethod.GET)
-
-	@RequestMapping(value = "/find", method = RequestMethod.GET)
+	@RequestMapping(value = "/find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserTO>> getUserByFilter(@RequestBody FilterUserTO userToFilter) {
 		return ResponseEntity.ok().body(service.getUserByFilter(userToFilter));
 	}

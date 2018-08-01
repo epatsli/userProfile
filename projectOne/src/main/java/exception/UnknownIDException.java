@@ -1,12 +1,13 @@
 package exception;
 
-//@ResponseStatus(HttpStatus.NOT_FOUND)
-public class UnknownIDException extends NullPointerException {
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-	String str;
-	public static final String message = "User don't exist.";
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class UnknownIDException extends NullPointerException {
+	private String error;
 
 	public UnknownIDException() {
-		this.str = "User don't exist";
+		System.out.println("This user don't exist.");
 	}
 }

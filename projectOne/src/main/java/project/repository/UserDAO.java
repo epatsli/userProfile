@@ -23,7 +23,7 @@ public class UserDAO {
 		userList.add(new UserEntity(3, "Michal", "Tyka", "michal.tyka@gmail.com", "1234", "I don't belive.", null));
 	}
 
-	public UserEntity getUserById(int i) {
+	public UserEntity getUserById(long i) {
 		UserEntity user = userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
 		return user;
 	}
@@ -119,6 +119,34 @@ public class UserDAO {
 	public List<UserEntity> getUserByFilter(String name, String lastName, ArrayList<PlayabilityTO> arrayList) {
 		return userList.stream().filter(u -> u.getFirstName().startsWith(name) && u.getLastName().equals(lastName)
 				&& u.getPlayability().contains(arrayList)).collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByNameAndLastName(String name, String lastName) {
+		return userList.stream().filter(u -> u.getFirstName().startsWith(name) && u.getLastName().equals(lastName))
+				.collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByNameAndPlayability(String name, ArrayList<PlayabilityTO> arrayList) {
+		return userList.stream()
+				.filter(u -> u.getFirstName().startsWith(name) && u.getPlayability().contains(arrayList))
+				.collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByLastNameAndPlayability(String lastName, ArrayList<PlayabilityTO> arrayList) {
+		return userList.stream().filter(u -> u.getLastName().equals(lastName) && u.getPlayability().contains(arrayList))
+				.collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByName(String name) {
+		return userList.stream().filter(u -> u.getFirstName().startsWith(name)).collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByPlayability(ArrayList<PlayabilityTO> arrayList) {
+		return userList.stream().filter(u -> u.getPlayability().contains(arrayList)).collect(Collectors.toList());
+	}
+
+	public List<UserEntity> getUserByLastName(String lastName) {
+		return userList.stream().filter(u -> u.getLastName().equals(lastName)).collect(Collectors.toList());
 	}
 
 }

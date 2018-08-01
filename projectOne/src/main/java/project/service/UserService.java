@@ -1,5 +1,6 @@
 package project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class UserService {
 		return UserMapper.mapToTO(userPlay);
 	}
 
-	public UserTO getUserById(int i) {
+	public UserTO getUserById(long i) {
 		UserEntity user = userDAO.getUserById(i);
 		return UserMapper.mapToTO(user);
 	}
@@ -67,27 +68,27 @@ public class UserService {
 	}
 
 	public List<UserTO> getUserByFilter(FilterUserTO user) {
-		List<UserEntity> filterUser = userDAO.getUserByFilter(user.getFirstName(), user.getLastName(),
-				user.getPlayability());
-		return UserMapper.mapUsersTO(filterUser);
+		String name = user.getFirstName();
+		String lastName = user.getLastName();
+		ArrayList<PlayabilityTO> playability = user.getPlayability();
+
+		if (name.isEmpty() && lastName.isEmpty() && playability.isEmpty()) {
+			return getAllUsers();
+		} else if (!name.isEmpty() && lastName.isEmpty() && playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByName(name));
+		} else if (name.isEmpty() && !lastName.isEmpty() && playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByLastName(lastName));
+		} else if (name.isEmpty() && lastName.isEmpty() && !playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByPlayability(playability));
+		} else if (name.isEmpty() && !lastName.isEmpty() && !playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByLastNameAndPlayability(lastName, playability));
+		} else if (!name.isEmpty() && lastName.isEmpty() && !playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByNameAndPlayability(name, playability));
+		} else if (!name.isEmpty() && !lastName.isEmpty() && playability.isEmpty()) {
+			return UserMapper.mapUsersTO(userDAO.getUserByNameAndLastName(name, lastName));
+		} else {
+			return UserMapper.mapUsersTO(userDAO.getUserByFilter(name, lastName, playability));
+		}
 	}
-	/*
-	 * public UserEntity getUserById(int i) { return userDAO.getUserById(i); }
-	 * 
-	 * public UserEntity getUserProfile(int i) { return
-	 * userDAO.getUserProfile(i); }
-	 * 
-	 * public void setUserProfile(int i, String newName, String newLastName,
-	 * String newMail, String newPassword, String newLifeMotto) {
-	 * userDAO.setUserProfile(i, newName, newLastName, newMail, newPassword,
-	 * newLifeMotto); }
-	 * 
-	 * public List<UserDTO> getAllUsers() { return
-	 * UserMapper.mapUser(userDAO.getAllUsers()); }
-	 * 
-	 * public UserTO findUserByEmail(String email) { return
-	 * UserMapper.mapToTO(userDAO.getUserByEmail(email)); }
-	 */
-	// current profile information,
 
 }

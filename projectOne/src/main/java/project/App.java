@@ -7,23 +7,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-/**
- * Hello world!
- *
- */
-
 @Configuration
 @EnableAspectJAutoProxy
 
 @SpringBootApplication
 
-@ComponentScan(basePackages = { "rest", "project.service", "project.repository", "project.mapper", "project.to" })
+@ComponentScan(basePackages = { "project.controller", "project.service", "project.repository", "project.mapper",
+		"project.to" })
 public class App {
 	public static void main(String[] args) {
 
 		ApplicationContext context = SpringApplication.run(App.class, args);
 		System.out.println("Hello World!");
-		// User user = context.getBean(User.class);
 
 	}
 }
