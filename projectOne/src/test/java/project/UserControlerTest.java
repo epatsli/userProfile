@@ -54,21 +54,24 @@ public class UserControlerTest {
 		// then
 		Assert.assertEquals(expectedHttpStatus, responseHttpStatus);
 		Assert.assertEquals(expectedJSON, responseJSON);
-
+		Mockito.verify(service, Mockito.never()).getUserById(Mockito.anyLong());
 	}
 
 	@Test
-	public void shouldReturnAllUser() throws Exception {
+	public void shouldUpdateUser() throws Exception {
 		UserTO user = new UserTO(1, "Jan", "Nowak", "jan.nowak@gmail.com", "password", "Life is to short.", null);
 
-		Mockito.when(service.getUserById(user.getId())).thenReturn(user);
-		Mockito.doNothing().when(service).updateDateUser(user);
+		// Mockito.when(service.getUserById(1)).thenReturn(user);
+		// Mockito.doNothing().when(service).updateDateUser(user);
 
-		mockMvc.perform(put("/{id}", user.getId()).contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
+		Mockito.when(service.updateDateUser(Mockito.any(UserTO.class))).thenCallRealMethod();
+
+		this.mockMvc
+				.perform(put("/{id}", user.getId()).contentType(MediaType.APPLICATION_JSON).content(asJsonString(user)))
 				.andExpect(status().isOk());
-		Mockito.verify(service).getUserById(user.getId());
-		Mockito.verify(service).updateDateUser(user);
 		Mockito.verifyNoMoreInteractions(service);
+		Mockito.verify(service).updateDateUser(Mockito.any());
+		//
 	}
 
 	static String asJsonString(final Object obj) {

@@ -14,6 +14,7 @@ import project.repository.UserDAO;
 import project.to.FilterUserTO;
 import project.to.PlayabilityTO;
 import project.to.UserTO;
+import utils.SearchParamsUtils;
 
 @Service
 public class UserService {
@@ -68,27 +69,50 @@ public class UserService {
 	}
 
 	public List<UserTO> getUserByFilter(FilterUserTO user) {
+
+		int paramsSum = SearchParamsUtils.countFilterUserParamsSum(user);
 		String name = user.getFirstName();
 		String lastName = user.getLastName();
 		ArrayList<PlayabilityTO> playability = user.getPlayability();
 
-		if (name.isEmpty() && lastName.isEmpty() && playability.isEmpty()) {
-			return getAllUsers();
-		} else if (!name.isEmpty() && lastName.isEmpty() && playability.isEmpty()) {
+		List<UserTO> result = new ArrayList<>();
+
+		switch (paramsSum) {
+		case 1:
 			return UserMapper.mapUsersTO(userDAO.getUserByName(name));
-		} else if (name.isEmpty() && !lastName.isEmpty() && playability.isEmpty()) {
-			return UserMapper.mapUsersTO(userDAO.getUserByLastName(lastName));
-		} else if (name.isEmpty() && lastName.isEmpty() && !playability.isEmpty()) {
-			return UserMapper.mapUsersTO(userDAO.getUserByPlayability(playability));
-		} else if (name.isEmpty() && !lastName.isEmpty() && !playability.isEmpty()) {
-			return UserMapper.mapUsersTO(userDAO.getUserByLastNameAndPlayability(lastName, playability));
-		} else if (!name.isEmpty() && lastName.isEmpty() && !playability.isEmpty()) {
-			return UserMapper.mapUsersTO(userDAO.getUserByNameAndPlayability(name, playability));
-		} else if (!name.isEmpty() && !lastName.isEmpty() && playability.isEmpty()) {
-			return UserMapper.mapUsersTO(userDAO.getUserByNameAndLastName(name, lastName));
-		} else {
-			return UserMapper.mapUsersTO(userDAO.getUserByFilter(name, lastName, playability));
+
+		case 2:
+			result = UserMapper.mapUsersTO(userDAO.getUserByLastName(lastName));
+			break;
+		case 3:
+			result = UserMapper.mapUsersTO(userDAO.getUserByNameAndLastName(name, lastName));
+			break;
+		case 4:
+			result = UserMapper.mapUsersTO(userDAO.getUserByPlayability(playability));
+			break;
+		case 5:
+			result = UserMapper.mapUsersTO(userDAO.getUserByNameAndPlayability(name, playability));
+			break;
+		case 6:
+			result = UserMapper.mapUsersTO(userDAO.getUserByLastNameAndPlayability(lastName, playability));
+			break;
+		case 7:
+			result = UserMapper.mapUsersTO(userDAO.getUserByFilter(user));
+			break;
+
+		default:
+			result = UserMapper.mapUsersTO(userDAO.getAllUsers());
+			break;
 		}
+
+		return result;
+
 	}
 
+	private boolean nameIsEmpty(String name) {
+		if (name.isEmpty() && name == "")
+			return true;
+		else
+			return false;
+	}
 }

@@ -55,7 +55,7 @@ public class UserRestController {
 		service.updateDateUser(user);
 	}
 
-	@RequestMapping(value = "/find", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/find", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<UserTO>> getUserByFilter(@RequestBody FilterUserTO userToFilter) {
 		return ResponseEntity.ok().body(service.getUserByFilter(userToFilter));
 	}
