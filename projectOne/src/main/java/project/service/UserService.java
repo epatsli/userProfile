@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import aspect.Aspect.LogExecutionTime;
+import exception.UserNotFoundException;
 import project.entity.UserEntity;
 import project.mapper.PlayabilitityMapper;
 import project.mapper.UserMapper;
@@ -14,7 +15,7 @@ import project.repository.UserDAO;
 import project.to.FilterUserTO;
 import project.to.PlayabilityTO;
 import project.to.UserTO;
-import utils.SearchParamsUtils;
+import project.utils.SearchParamsUtils;
 
 @Service
 public class UserService {
@@ -60,6 +61,9 @@ public class UserService {
 
 	public UserTO getUserById(long i) {
 		UserEntity user = userDAO.getUserById(i);
+		if (user == null) {
+			throw new UserNotFoundException();
+		}
 		return UserMapper.mapToTO(user);
 	}
 

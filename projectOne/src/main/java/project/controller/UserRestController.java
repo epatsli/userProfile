@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import exception.UnknownIDException;
 import project.service.UserService;
 import project.to.FilterUserTO;
 import project.to.UserTO;
@@ -40,14 +39,8 @@ public class UserRestController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public UserTO getUserById(@PathVariable("id") long id) {
-		try {
-			UserTO user = service.getUserById(id);
-			return user;
-		} catch (Exception ex) {
-			new UnknownIDException();
-		}
-		return null;
 
+		return service.getUserById(id);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

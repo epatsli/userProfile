@@ -25,7 +25,7 @@ public class UserDAO {
 	}
 
 	public UserEntity getUserById(long i) {
-		UserEntity user = userList.stream().filter(u -> u.getId() == i).collect(Collectors.toList()).get(0);
+		UserEntity user = userList.stream().filter(u -> u.getId() == i).findFirst().orElse(null);
 		return user;
 	}
 	/*
