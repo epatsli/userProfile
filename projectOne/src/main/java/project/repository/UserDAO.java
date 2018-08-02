@@ -8,10 +8,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import project.entity.PlayabilityEntity;
-import project.entity.UserEntity;
-import project.to.FilterUserTO;
-import project.to.PlayabilityTO;
+import project.service.FilterUserTO;
+import project.service.PlayabilityTO;
 
 @Repository
 public class UserDAO {

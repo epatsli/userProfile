@@ -5,12 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import project.entity.GameEntity;
 import project.mapper.GameMapper;
 import project.mapper.UserMapper;
+import project.repository.GameEntity;
 import project.repository.UserGameDAO;
-import project.to.GameTO;
-import project.to.UserTO;
 
 @Service
 public class UserGameService {

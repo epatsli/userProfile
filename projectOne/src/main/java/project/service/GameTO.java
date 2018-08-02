@@ -1,21 +1,16 @@
-package project.entity;
+package project.service;
 
-public class GameEntity {
-
-	private String name;
+public class GameTO {
+	private String Name;
 	private int numberPlayer;
 
-	public GameEntity(String name, int numberPlayer) {
-		this.name = name;
+	public GameTO(String name, int numberPlayer) {
+		Name = name;
 		this.numberPlayer = numberPlayer;
 	}
 
 	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
+		return Name;
 	}
 
 	public int getNumberPlayer() {
@@ -24,6 +19,10 @@ public class GameEntity {
 
 	public void setNumberPlayer(int numberPlayer) {
 		this.numberPlayer = numberPlayer;
+	}
+
+	public void setName(String name) {
+		Name = name;
 	}
 
 }

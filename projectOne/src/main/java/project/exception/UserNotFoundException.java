@@ -1,4 +1,4 @@
-package exception;
+package project.exception;
 
 public class UserNotFoundException extends Error {
 	public UserNotFoundException() {

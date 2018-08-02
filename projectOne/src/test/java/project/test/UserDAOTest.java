@@ -1,4 +1,4 @@
-package project;
+package project.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,9 +11,9 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import project.entity.PlayabilityEntity;
-import project.entity.UserEntity;
+import project.repository.PlayabilityEntity;
 import project.repository.UserDAO;
+import project.repository.UserEntity;
 import project.utils.DateUtils;
 
 @RunWith(MockitoJUnitRunner.class)

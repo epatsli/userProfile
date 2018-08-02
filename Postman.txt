@@ -1,0 +1,127 @@
+http://localhost:8080/allUser	[GET]
+Dla powyzszego linku otrzymamy liste wszystkich uzytkownikow.
+
+Dla:
+http://localhost:8080/1		[GET]
+http://localhost:8080/2		[GET]
+http://localhost:8080/3		[GET]
+pobieramy dane kazdego Usera.
+
+Jako, ze baza sklada sie z 3 uzytkownikow, po 
+http://localhost:8080/4		[GET]
+na konsoli pojawia sie napi "This user don't exist."
+
+Edycja danych
+Przechodzac w Postmanie do
+http://localhost:8080/1		[GET]
+zmieniamy akcje na PUT, wybieramy "Body", "raw", "Text" zmieniamy na "JSON (application/json)" i wklejamy:
+
+{
+
+"id": 1,
+"email": "jan.nowak@gmail.com",
+
+"firstName": "Jan",
+"lastName": "Kowalski",
+
+"password": "password",
+
+"lifeMotto": "YCDI",
+
+"playability": null
+
+}
+
+Nastepnie wciskamy przycisk "Send". W tym momencie wykonalismy update uzytkownika.
+Dla sprawdyenia ponownie zmieniamy akcje na "GET". 
+http://localhost:8080/1		[GET]
+W reyultacie otrzymujemy zmienione dane.
+Dla sprawdyenia mozemy wykonac:
+http://localhost:8080/allUser	[GET]
+gdzie dostajemy liste wszystkich uzytkownikow, na ktorych widac pierwszego uzytkownika z updatowanymi danymi.
+
+W celu przetestowania wyszukiwania po wielu kryteriach wybieramy:
+http://localhost:8080/find	[PUT]
+gdzie w "Body" wybieramy "raw" oraz "Text" zmieniamy na "JSON (application/json)".
+Nastepnie podajemy zapytanie. Jezeli podamy:
+{
+
+
+}
+
+otrzymamy wszystkich uzytkownikow.
+Po zawezenia poszukiwan do:
+
+{
+
+"firstName": "Jan",
+"lastName": "Nowak",
+"playability": null
+}
+
+otrzymamy tylko jednego uzytkownika.
+
+Po updatowaniu danych pierwszego uzytkownika:
+http://localhost:8080/1		[PUT]
+z cialem:
+{
+        
+"id": 1,
+"email": "jan.nowak@gmail.com",
+"firstName": "Olga",
+
+"lastName": "Kowalski",
+"password": "password",
+"lifeMotto": "Life is to short.",   
+"playability": null
+}
+
+a nastepnie wyszukaniu po imieniu:
+http://localhost:8080/find	[PUT]
+z cialem:
+
+{
+
+"firstName": "Olga"
+}
+
+otrzymjemy dwoch uzytkownikow:
+[
+    
+{
+        
+"id": 1,
+        
+"email": "jan.nowak@gmail.com",
+        
+"firstName": "Olga",
+        
+"lastName": "Kowalski",
+        
+"password": "password",
+        
+"lifeMotto": "Life is to short.",
+        
+"playability": null
+
+},
+    
+{
+        
+"id": 2,
+        
+"email": "ola.kowalska@gmail.com",
+        
+"firstName": "Olga",
+        
+"lastName": "Kowalska",
+        
+"password": "admin",
+        
+"lifeMotto": "I want to die.",
+        
+"playability": null
+    
+}
+
+]

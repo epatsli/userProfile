@@ -1,9 +1,9 @@
-package project.domain;
+package project;
 
 import java.util.Date;
 
-import project.entity.GameEntity;
-import project.entity.UserEntity;
+import project.repository.GameEntity;
+import project.repository.UserEntity;
 
 public class GamePlayed {
 	private GameEntity Game;

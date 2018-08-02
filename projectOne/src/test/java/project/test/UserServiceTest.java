@@ -1,4 +1,4 @@
-package project;
+package project.test;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
@@ -12,11 +12,11 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import project.entity.UserEntity;
 import project.repository.UserDAO;
+import project.repository.UserEntity;
+import project.service.PlayabilityTO;
 import project.service.UserService;
-import project.to.PlayabilityTO;
-import project.to.UserTO;
+import project.service.UserTO;
 import project.utils.DateUtils;
 
 @RunWith(MockitoJUnitRunner.class)

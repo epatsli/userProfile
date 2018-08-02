@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import project.entity.GameEntity;
-import project.to.GameTO;
+import project.repository.GameEntity;
+import project.service.GameTO;
 
 @Component
 public class GameMapper {

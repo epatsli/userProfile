@@ -1,4 +1,4 @@
-package project;
+package project.test;
 
 import java.util.Collections;
 
@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import project.service.UserService;
-import project.to.UserTO;
+import project.service.UserTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

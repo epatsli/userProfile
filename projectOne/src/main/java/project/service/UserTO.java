@@ -1,30 +1,23 @@
-package project.entity;
+package project.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.lang.NonNull;
+import project.repository.PlayabilityEntity;
 
-public class UserEntity {
-
+public class UserTO {
 	private int id;
-
-	@NonNull
-	private String firstName;
-
-	@NonNull
-	private String lastName;
-
-	@NonNull
 	private String email;
-
-	@NonNull
+	private String firstName;
+	private String lastName;
 	private String password;
-
 	private String lifeMotto;
+	private ArrayList<PlayabilityEntity> playability;
 
-	private List<PlayabilityEntity> playability;
+	public UserTO() {
+	}
 
-	public UserEntity(int id, String firstName, String lastName, String email, String password, String lifeMotto,
+	public UserTO(int id, String firstName, String lastName, String email, String password, String lifeMotto,
 			List<PlayabilityEntity> playability) {
 		this.id = id;
 		this.firstName = firstName;
@@ -33,7 +26,14 @@ public class UserEntity {
 		this.password = password;
 		this.lifeMotto = lifeMotto;
 		this.playability = null;
+	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -76,25 +76,12 @@ public class UserEntity {
 		this.lifeMotto = lifeMotto;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public List<PlayabilityEntity> getPlayability() {
+	public ArrayList<PlayabilityEntity> getPlayability() {
 		return playability;
 	}
 
-	public void setPlayability(List<PlayabilityEntity> playability) {
+	public void setPlayability(ArrayList<PlayabilityEntity> playability) {
 		this.playability = playability;
 	}
 
-	@Override
-	public String toString() {
-		return "User firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password
-				+ ", lifeMotto=" + lifeMotto + "]";
-	}
 }

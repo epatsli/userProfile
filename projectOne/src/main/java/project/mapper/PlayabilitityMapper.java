@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import project.entity.PlayabilityEntity;
-import project.to.PlayabilityTO;
+import project.repository.PlayabilityEntity;
+import project.service.PlayabilityTO;
 
 @Component
 public class PlayabilitityMapper {

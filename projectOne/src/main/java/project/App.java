@@ -12,8 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 
-@ComponentScan(basePackages = { "project.controller", "project.service", "project.repository", "project.mapper",
-		"project.to" })
+@ComponentScan(basePackages = { "project.controller", "project.service", "project.repository", "project.mapper" })
 public class App {
 	public static void main(String[] args) {
 

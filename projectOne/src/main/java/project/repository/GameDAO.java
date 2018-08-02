@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import project.entity.GameEntity;
-
 @Repository
 public class GameDAO {
 

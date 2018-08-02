@@ -1,4 +1,4 @@
-package project;
+package project.test;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import project.controller.UserRestController;
 import project.service.UserService;
-import project.to.UserTO;
+import project.service.UserTO;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

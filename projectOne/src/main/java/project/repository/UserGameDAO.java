@@ -5,9 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import project.entity.GameEntity;
-import project.entity.UserEntity;
-
 @Repository
 public class UserGameDAO {
 

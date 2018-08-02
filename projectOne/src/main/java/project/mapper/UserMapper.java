@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import project.entity.UserEntity;
-import project.to.UserTO;
+import project.repository.UserEntity;
+import project.service.UserTO;
 
 @Component
 public class UserMapper {

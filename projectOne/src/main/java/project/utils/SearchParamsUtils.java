@@ -2,7 +2,7 @@ package project.utils;
 
 import org.springframework.lang.NonNull;
 
-import project.to.FilterUserTO;
+import project.service.FilterUserTO;
 
 public class SearchParamsUtils {
 

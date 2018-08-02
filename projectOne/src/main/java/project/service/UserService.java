@@ -6,15 +6,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import aspect.Aspect.LogExecutionTime;
-import exception.UserNotFoundException;
-import project.entity.UserEntity;
+import project.aspect.Aspect.LogExecutionTime;
+import project.exception.UserNotFoundException;
 import project.mapper.PlayabilitityMapper;
 import project.mapper.UserMapper;
 import project.repository.UserDAO;
-import project.to.FilterUserTO;
-import project.to.PlayabilityTO;
-import project.to.UserTO;
+import project.repository.UserEntity;
 import project.utils.SearchParamsUtils;
 
 @Service
