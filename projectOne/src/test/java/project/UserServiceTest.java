@@ -17,7 +17,7 @@ import project.repository.UserDAO;
 import project.service.UserService;
 import project.to.PlayabilityTO;
 import project.to.UserTO;
-import utils.DateUtils;
+import project.utils.DateUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {

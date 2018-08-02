@@ -14,7 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import project.entity.PlayabilityEntity;
 import project.entity.UserEntity;
 import project.repository.UserDAO;
-import utils.DateUtils;
+import project.utils.DateUtils;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDAOTest {
